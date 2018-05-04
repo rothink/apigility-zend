@@ -37,7 +37,7 @@ return [
             ],
             'collection_query_whitelist' => [],
             'page_size' => 25,
-            'page_size_param' => null,
+            'page_size_param' => '15',
             'entity_class' => \SONBasic\V1\Rest\Categories\CategoriesEntity::class,
             'collection_class' => \SONBasic\V1\Rest\Categories\CategoriesCollection::class,
             'service_name' => 'categories',
@@ -85,6 +85,7 @@ return [
                 'hydrator_name' => \Zend\Hydrator\ArraySerializable::class,
                 'controller_service_name' => 'SONBasic\\V1\\Rest\\Categories\\Controller',
                 'entity_identifier_name' => 'id',
+                'table_service' => 'SONBasic\\V1\\Rest\\Categories\\CategoriesResource\\Table',
             ],
         ],
     ],
@@ -114,6 +115,10 @@ return [
                             'max' => '255',
                         ],
                     ],
+                    1 => [
+                        'name' => \Zend\Validator\NotEmpty::class,
+                        'options' => [],
+                    ],
                 ],
             ],
             1 => [
@@ -131,8 +136,8 @@ return [
                     0 => [
                         'name' => \Zend\Validator\StringLength::class,
                         'options' => [
-                            'min' => 1,
                             'max' => '255',
+                            'min' => '5',
                         ],
                     ],
                 ],
